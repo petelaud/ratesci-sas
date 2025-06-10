@@ -16,9 +16,9 @@
 
 *Validation of SCORECI macro, using a large random sample of parameters (alpha, n1, n0, e1, e0);
 *Output results to a text/csv file for comparison against other sources:
-*1: R 'diffscoreci' function;
+*1: R PropCIs::diffscoreci function;
 *2: SAS/STAT v9.4 PROC FREQ (NB this will not calculate any interval for 0/n1-0/n0, or n1/n1-n0/n0);
-*3: R 'scoreci' function for skewness-corrected interval;
+*3: R ratesci::scoreci function for skewness-corrected interval;
 
 
 *** The validation code below requires the SCORECI macro code to have been run;

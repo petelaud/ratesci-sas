@@ -1,22 +1,47 @@
 #   Validation of SAS SCORECI macro against R function
 #    ratesci::scoreci  (for stratified MN and SCAS intervals)
+#    metalite.ae::rate_compare (stratified MN)
 #
 
-install.packages('ratesci')
-library(ratesci)
+# install.packages('ratesci')
+# install.packages('metalite.ae')
 
 SASCIs <- read.csv("/Users/ssu/Documents/Main/GitHub/ratesci-sas/tests/sasval3.csv")
 nsamp <- max(SASCIs$sample)
 head(SASCIs)
 
-RCIs <- array(NA, dim = c(nsamp, 2))
+RCIs <- RCIs2 <- array(NA, dim = c(nsamp, 2))
 dimnames(RCIs)[[2]] <- c("lclR", "uclR")
+dimnames(R2CIs)[[2]]<-c("lclR2","uclR2")
 for (i in 1:nsamp) {
   onesample <- SASCIs[SASCIs$sample == i, ]
   try(RCIs[i, ] <- ratesci::scoreci(x1 = onesample[,"e1"], n1 = onesample[,"n1"],
                             x2 = onesample[,"e0"], n2 = onesample[,"n0"],
                             level = onesample[,"CONFLEV"][1], stratified = TRUE,
                             skew = FALSE, precis=10)$estimates[,c(1,3)])
+  nstrat <- length(onesample[,"e1"])
+  x1 <- onesample[,"e1"]
+  n1 <- onesample[,"n1"]
+  x2 <- onesample[,"e0"]
+  n2 <- onesample[,"n0"]
+  treatment <- c(rep(rep("pbo", nstrat), n2), 
+                 rep(rep("exp", nstrat), n1))
+  response <- c(rep(rep(0,nstrat), n2-x2), 
+                rep(rep(1,nstrat), x2),
+                rep(rep(0,nstrat), n1-x1), 
+                rep(rep(1,nstrat), x1))
+  stratum <- rep(rep(1:nstrat, 4), 
+                 c(n2-x2, x2, n1-x1, x1))
+  try(
+    RCIs2[i, ] <- metalite.ae::rate_compare(
+      response ~ factor(treatment, levels = c("pbo", "exp")),
+      strata = stratum,
+      delta = 0,
+      weight = "cmh",
+      test = "two.sided",
+      alpha = 0.05
+    )[4:5]
+  )
   #('try' function allows the loop to continue in the event of an error)
 }
 
