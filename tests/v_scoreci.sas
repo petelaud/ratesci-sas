@@ -399,4 +399,156 @@ CARDS;
 %SCORECI(DS=DS6, DELTA=0, LEVEL=0.95, STRATIFY=TRUE, WEIGHT=1, SKEW=FALSE);
 %SCORECI(DS=DS6, DELTA=0, LEVEL=0.95, STRATIFY=TRUE, WEIGHT=2, SKEW=FALSE); 
 
+*** RR Examples from Gart & Nam 1988;
+DATA DS7a;
+INPUT      STRATUM   E1 N1 E0 N0;
+CARDS;
+ 2   6 10 6 20
+;
+ 1   8 15 4 15
+options nomprint;
+*uncorrected, (0.815, 5.34) & (0.844, 4.59);
+%SCORECI(DS=DS7, DELTA=., LEVEL=0.95, STRATIFY=FALSE, BCF=FALSE, SKEW=FALSE, contrast=RR);
+*GN skewness corrected (0.806, 6.15) & (0.822, 4.95);
+%SCORECI(DS=DS7, DELTA=., LEVEL=0.95, STRATIFY=FALSE, BCF=FALSE, SKEW=TRUE, contrast=RR);
+*SCAS;
+*%SCORECI(DS=DS7, DELTA=., LEVEL=0.95, STRATIFY=FALSE, WEIGHT=1, SKEW=TRUE, contrast=OR);
 
+
+*check MN vs PROC FREQ output (0.8034, 5.4231) & (0.8310, 4.6580);
+%SCORECI(DS=DS7a, DELTA=., LEVEL=0.95, STRATIFY=FALSE, BCF=TRUE, SKEW=FALSE, contrast=RR, converge=1E-14);
+
+data ds7t;
+  set ds7a;
+  trt = 1; 
+  outcome = 0; count = E1;  output;
+  outcome = 1; count = N1 - E1; output;
+  trt = 2; 
+  outcome = 0; count = E0;  output;
+  outcome = 1; count = N0 - E0; output;
+run; 
+ods output relativeriskcls = rrci;
+proc freq data=DS7t;
+  weight count;
+  by stratum;
+*  tables trt*outcome / cmh rr(cl=score(correct=no)) alpha=0.05;
+  tables trt*outcome / cmh rr(cl=score) alpha=0.05;
+run; 
+data rrci;
+ set rrci;
+ format lowercl uppercl 12.10;
+run;
+
+ods output binomialcls = wilsonci;
+proc freq data=DS7t;
+  weight count;
+  by stratum trt;
+  tables outcome / binomial(CL=SCORE) alpha=0.05;
+run; 
+
+
+*** Stratified RR example from Gart & Nam 1988;
+*** Gart formula matches with INV weighting;
+*** (Efficient score test);
+DATA DS7b;
+INPUT      STRATUM   E1 N1 E0 N0;
+CARDS;
+ 1   4 16 5 79
+ 2   2 16 3 87
+ 3   4 18 10 90
+ 4   1 15 3 82
+;
+* (1.35, 5.03);
+%SCORECI(DS=DS7b, DELTA=., LEVEL=0.95, STRATIFY=TRUE, WEIGHT=3, BCF=FALSE, SKEW=FALSE, contrast=RR);
+* (1.31, 5.08);
+%SCORECI(DS=DS7b, DELTA=., LEVEL=0.95, STRATIFY=TRUE, WEIGHT=3, BCF=FALSE, SKEW=TRUE, contrast=RR);
+
+* RR with MH weighting;
+
+* RD for comparison with SAS Viya / %mn_cmh;
+%SCORECI(DS=DS7b, DELTA=., LEVEL=0.95, STRATIFY=FALSE, WEIGHT=1, BCF=TRUE, SKEW=FALSE, contrast=RD);
+%SCORECI(DS=DS7b, DELTA=., LEVEL=0.95, STRATIFY=TRUE, WEIGHT=1, BCF=TRUE, SKEW=FALSE, contrast=RD);
+%SCORECI(DS=DS7b, DELTA=., LEVEL=0.95, STRATIFY=TRUE, WEIGHT=3, BCF=TRUE, SKEW=FALSE, contrast=RD);
+
+
+*** Stratified OR example from Gart 1985;
+*** Gart formula matches with INV weighting;
+*** But in that paper he included a continuity correction;
+*** so compare instead against ratesci output with cc=FALSE;
+DATA DS7b;
+INPUT      STRATUM   E1 N1 E0 N0;
+CARDS;
+ 1   4 16 5 79
+ 2   2 16 3 87
+ 3   4 18 10 90
+ 4   1 15 3 82
+;
+* Gart reports CI (with cc but no other correction) as (1.29, 7.31)
+* ratesci gives the corresponding CI without cc as 
+* (1.4156, 6.7747);
+%SCORECI(DS=DS7b, DELTA=., LEVEL=0.95, STRATIFY=TRUE, WEIGHT=3, ORBIAS=FALSE, BCF=FALSE, SKEW=FALSE, contrast=OR);
+* and with the bias and skewness corrections:
+* (1.3584, 6.5985);
+%SCORECI(DS=DS7b, DELTA=., LEVEL=0.95, STRATIFY=TRUE, WEIGHT=3, ORBIAS=TRUE, BCF=FALSE, SKEW=TRUE, contrast=OR);
+
+*** Check vs %mn_cmh macro;
+*** (https://pharmasug.org/proceedings/2025/SA/PharmaSUG-2025-SA-198.pdf);
+
+%strata(stratum =1, n1=16, n2=79, x1=4, x2=5); 
+%strata(stratum =2, n1=16, n2=87, x1=2, x2=3); 
+%strata(stratum =3, n1=18, n2=90, x1=4, x2=10); 
+%strata(stratum =4, n1=15, n2=82, x1=1, x2=3); 
+%mn_cmh(critval=1.96);
+
+
+DATA DS8; *p1=1 can cause problems for some packages for RR;
+INPUT      STRATUM   E1 N1 E0 N0;
+CARDS;
+ 1   99 99 50 52
+;
+%SCORECI(DS=DS8, DELTA=., LEVEL=0.95, STRATIFY=FALSE, WEIGHT=1, BCF=FALSE, SKEW=FALSE, contrast=RR);
+data ds8t;
+  set ds8;
+  trt = 1; 
+  outcome = 1; count = E1;  output;
+  outcome = 0; count = N1 - E1; output;
+  trt = 2; 
+  outcome = 1; count = E0;  output;
+  outcome = 0; count = N0 - E0; output;
+run; 
+
+ods output relativeriskcls=rrcls cmh=cmh ;
+proc freq data=DS8t;
+  weight count;
+  by stratum;
+  tables trt*outcome / cmh relrisk(cl=score(correct=no) column=2) alpha=0.05;
+  tables trt*outcome / cmh relrisk(cl=score column=2) alpha=0.05;
+run; 
+
+
+DATA DS9; *Lee & Bae example;
+INPUT      STRATUM   E1 N1 E0 N0;
+CARDS;
+ 1   25 339 28 335
+ 2   23 370 40 364
+;
+%SCORECI(DS=DS9, DELTA=., LEVEL=0.95, STRATIFY=TRUE, WEIGHT=1, BCF=TRUE, SKEW=FALSE, contrast=RD);
+%SCORECI(DS=DS9, DELTA=., LEVEL=0.95, STRATIFY=TRUE, WEIGHT=1, BCF=TRUE, SKEW=FALSE, contrast=RR, converge=1E-10);
+%SCORECI(DS=DS9, DELTA=., LEVEL=0.95, STRATIFY=TRUE, WEIGHT=3, BCF=TRUE, SKEW=FALSE, contrast=OR);
+data ds9t;
+  set ds9;
+  trt = 1; 
+  outcome = 1; count = E1;  output;
+  outcome = 0; count = N1 - E1; output;
+  trt = 2; 
+  outcome = 1; count = E0;  output;
+  outcome = 0; count = N0 - E0; output;
+run; 
+
+ods output relativeriskcls=rrcls cmh=cmh ;
+proc freq data=DS9t;
+  weight count;
+  by stratum;
+  tables trt*outcome / cmh relrisk(cl=score(correct=no) column=2) alpha=0.05;
+  tables trt*outcome / cmh relrisk(cl=score column=2) alpha=0.05;
+run; 

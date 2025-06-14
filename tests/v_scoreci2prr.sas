@@ -1,14 +1,14 @@
 **********************************************************
 *
-* Program Name   : V_SCORECI2p.SAS
+* Program Name   : V_SCORECI2prr.SAS
 * Level / Study  : global reusable macro
 * Type           : macro validation
-* Description    : Validation of SCORECI macro for Poisson RD
+* Description    : Validation of SCORECI macro for Poisson RR
 *					(Work in progress)  
 * 
 * Author         : Pete Laud 
 * 
-* Date Created   : Dec 21 2023
+* Date Created   : 13 Jun 2025
 * Program Status : IN DEVELOPMENT
 *
 **********************************************************;
@@ -38,30 +38,30 @@
 * filename prog "C:\Documents\ratesci-sas";
 * %inc prog(scoreci);
 
+%let path = C:\Mac\Home\Documents\Main\GitHub\ratesci-sas\;
 
 %let nsamp=10000;
 
 *Generate a random sample of numerators & denominators;
 data sample(drop=treatment response freq) longsample(drop=n1 n0 e1 e0 p1 p0);
- do i=1 to &nsamp.;
-  n1=ceil(rand('uniform')*300); *select n1 between 1 and 300;
-  n0=ceil(rand('uniform')*300);
-  e1=ceil(rand('uniform')*(n1+1))-1; *select e1 between 0 and n1;
-  e0=ceil(rand('uniform')*(n0+1))-1;
-  p1=e1/n1;
-  p0=e0/n0;
-  if mod(i,3)=0 then alpha=0.01; *select alpha level;
-  else if mod(i,3)=1 then alpha=0.05;
-  else alpha=0.1;
+ do i = 1 to &nsamp.;
+  n1 = ceil(rand('uniform')*300); *select n1 between 1 and 300;
+  n0 = ceil(rand('uniform')*300);
+  e1 = ceil(rand('uniform')*(n1+1))-1; *select e1 between 0 and n1;
+  e0 = ceil(rand('uniform')*(n0+1))-1;
+  p1 = e1/n1;
+  p0 = e0/n0;
+  if mod(i,3) = 0 then alpha = 0.01; *select alpha level;
+  else if mod(i,3) = 1 then alpha = 0.05;
+  else alpha = 0.1;
   output sample; *this wide version is the correct format for NON_INF macro to use;
   *output also in long format for proc freq to use;
-   treatment="1test"; response=1; freq=e1; output longsample; *NB trts deliberately labelled in reverse because statxact does 2-1 not 1-2;
-   treatment="1test"; response=2; freq=n1-e1; output longsample;
-   treatment="2comp"; response=1; freq=e0; output longsample;
-   treatment="2comp"; response=2; freq=n0-e0; output longsample;
+   treatment = "1test"; response=1; freq=e1; output longsample; *NB trts deliberately labelled in reverse because statxact does 2-1 not 1-2;
+   treatment = "1test"; response=2; freq=n1-e1; output longsample;
+   treatment = "2comp"; response=1; freq=e0; output longsample;
+   treatment = "2comp"; response=2; freq=n0-e0; output longsample;
  end;
 run;
-quit;
 
 **Check random sample;
 *proc gplot data=sample;
@@ -71,40 +71,45 @@ quit;
 
 *Run the macro on the sample of data points;
 %SCORECI(DS = sample, 
-         DELTA = -0.1, 
+         DELTA = 0.9, 
          LEVEL = 1-alpha, 
          STRATIFY = FALSE, 
          SKEW = FALSE, 
+         CONTRAST = RR,
          DISTRIB = poi, 
+         CONVERGE = 1E-8,
          OUTPUT = FALSE);
-data sasval(keep=i e1 n1 e0 n0 conflev l_bound u_bound test_delta pval_L);
- set result;
- i=_n_;
+data sasval(keep = i e1 n1 e0 n0 conflev l_bound u_bound test_delta pval_L);
+  set result;
+  i = _n_;
 run;
 *Export to csv for validation against R output using program v_scoreci2p.R; 
 *libname mylib "X:\My Drive\_Work\GitHub\ratesci-sas";
 proc export data=sasval 
- outfile = "&path.tests\sasval2p.csv"
- dbms=csv replace;
+  outfile = "&path.tests\sasval2prr.csv"
+  dbms = csv replace;
 run;
 
 *Run again, this time with skewness correction;
 %SCORECI(DS = sample, 
-         DELTA = -0.1, 
+         DELTA = 0.9, 
          LEVEL = 1-alpha, 
          STRATIFY = FALSE, 
          SKEW = TRUE, 
+         CONTRAST = RR,
          DISTRIB = poi, 
+/*         CONVERGE = 1E-10,
+         MAXITER - 100000,*/
          OUTPUT = FALSE);
 *Export to csv for validation against R output using program v_scoreci.R; 
 *libname mylib "X:\My Drive\_Work\GitHub\ratesci-sas";
-data sasval(keep=e1 n1 e0 n0 conflev l_bound u_bound test_delta pval_L);
- set result;
- i=_n_;
+data sasval(keep = e1 n1 e0 n0 conflev l_bound u_bound test_delta pval_L);
+  set result;
+  i = _n_;
 run;
 proc export data=sasval 
- outfile = "&path.tests\sasval2pskew.csv"
- dbms=csv replace;
+  outfile = "&path.tests\sasval2prrskew.csv"
+  dbms = csv replace;
 run;
 
 
