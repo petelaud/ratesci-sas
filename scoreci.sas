@@ -44,7 +44,7 @@
 *                           TRUE (default) - Skewness-corrected asymptotic score method (SCAS)
 *                  BCF    = indicator for inclusion of N-1 variance bias correction
 *                           TRUE (default) - to match Miettinen-Nurminen
-*                           FALSE - to match Gart-Nam
+*                           FALSE - to match Mee or Gart-Nam
 *                  ORBIAS = indicator for inclusion of additional bias correction for odds ratio contrast
 *                           TRUE (default) - to match Gart (See Laud 2018)
 *                           FALSE - to match PROC FREQ output with OR(CL=SCORE) which omits the correction
@@ -790,5 +790,6 @@ run;
 quit;
 
 %MEND SCORECI;
+
 
 
