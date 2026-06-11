@@ -1,0 +1,8 @@
+{
+  "bundle": "t006_pairbinci_paired_proportions",
+  "source_file": "pairbinci.sas",
+  "source_blob_sha": "fe8354a374704edb008072e40ed70c912c37ea8a",
+  "source_commit": "5426edea41800c563999aaaaac4b16b71e844952",
+  "tier": "real_data",
+  "notes": "script.sas embeds pairbinci.sas with mechanical adaptations for the Jenner engine: (1) infty PROC FORMAT + format statement removed; (2) %fx(x = ...) named calls -> positional %fx(...); (3) three comments removed (two wedged between IF and ELSE clauses, one containing a macro invocation inside a star comment). Calls are the published examples from tests/v_pairbinci.sas; all four confidence intervals match Fagerland et al. 2014 Tables V/VI and Laud 2025 Tables 5.1/5.2, and the PROC FREQ AGREE McNemar test agrees with the macro's Tango test for association. One bundle per example dataset (each %SCORECI/%PAIRBINCI bundle keeps a constant stratum count)."
+}

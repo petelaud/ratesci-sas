@@ -1,0 +1,52 @@
+                                            Tango RD expect (-0.517, -0.026)                                            
+
+
+  Obs  A  B  C   D  LEVEL  CONTRAST     UCL     LCL    BCF   SKEW  CHI2  PVAL_2SIDED  THETA0         Z_STAT  PVAL_L  PVAL_R
+-----  -  -  -  --  -----  --------  ------  ------  -----  -----  ----  -----------  ------  -------------  ------  ------
+    1  1  1  7  12   0.95  RD        -0.026  -0.517  FALSE  FALSE   4.5        0.034       0  -2.1213203436   0.017   0.983
+
+                                             Tang RR expect (0.065, 0.907)                                              
+
+
+  Obs  A  B  C   D  LEVEL  CONTRAST    UCL    LCL    BCF   SKEW  CHI2  PVAL_2SIDED  THETA0         Z_STAT  PVAL_L  PVAL_R
+-----  -  -  -  --  -----  --------  -----  -----  -----  -----  ----  -----------  ------  -------------  ------  ------
+    1  1  1  7  12   0.95  RR        0.907  0.065  FALSE  FALSE   4.5        0.034       1  -2.1213203436   0.017   0.983
+
+                                            SCAS RD expect (-0.528, -0.018)                                             
+
+
+  Obs  A  B  C   D  LEVEL  CONTRAST     UCL     LCL   BCF  SKEW          CHI2  PVAL_2SIDED  THETA0        Z_STAT  PVAL_L  PVAL_R
+-----  -  -  -  --  -----  --------  ------  ------  ----  ----  ------------  -----------  ------  ------------  ------  ------
+    1  1  1  7  12   0.95  RD        -0.018  -0.528  TRUE  TRUE  4.2857142857        0.038       0  -2.070196678   0.019   0.981
+
+                                             SCAS RR expect (0.043, 0.928)                                              
+
+
+  Obs  A  B  C   D  LEVEL  CONTRAST    UCL    LCL   BCF  SKEW          CHI2  PVAL_2SIDED  THETA0        Z_STAT  PVAL_L  PVAL_R
+-----  -  -  -  --  -----  --------  -----  -----  ----  ----  ------------  -----------  ------  ------------  ------  ------
+    1  1  1  7  12   0.95  RR        0.928  0.043  TRUE  TRUE  4.2857142857        0.038       1  -2.070196678   0.019   0.981
+
+                                                   The FREQ Procedure
+
+Table of PassPre by PassPost
+
+PassPre |         0 |         1 |      Total
+--------+-----------+-----------+-----------
+0       |        12 |         7 |         19
+--------+-----------+-----------+-----------
+1       |         1 |         1 |          2
+--------+-----------+-----------+-----------
+Total   |        13 |         8 |         21
+
+
+Statistics for Agreement of PassPre by PassPost
+
+Statistic                             Value          ASE
+--------------------------------------------------------
+Simple Kappa Coefficient             0.0562       0.0000
+
+McNemar's Test                             
+Chi-Square                           4.5000
+DF                                        1
+Pr > ChiSq                           0.0339
+

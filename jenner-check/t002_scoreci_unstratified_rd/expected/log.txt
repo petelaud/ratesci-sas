@@ -1,0 +1,122 @@
+Jenner 0.1.0 (Unlicensed - limited to 100 observations)
+Get a license at https://jenneranalytics.com/license
+
+NOTE: Option OBS changed to 100.
+NOTE: Option VALIDVARNAME changed to V7.
+NOTE: DATA DS4
+
+NOTE: Processing inline DATALINES (8 lines)
+
+NOTE: Read 8 rows from DATALINES.
+NOTE: Wrote DS4 (8 rows, 5 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: DATA dscheck
+
+
+NOTE: Read 8 rows from DS4.
+NOTE: Wrote dscheck (8 rows, 6 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: DATA dscount
+
+
+NOTE: Read 8 rows from dscheck.
+NOTE: Wrote dscount (8 rows, 7 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: Option TITLE changed to Unstratified MN intervals (Newcombe 1998 examples).
+NOTE: DATA weights
+
+
+NOTE: Read 8 rows from dscount.
+NOTE: Wrote weights (8 rows, 11 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC DATASETS library=WORK
+
+NOTE: Deleting DSCHECK (memtype=DATA).
+NOTE: Deleting DSCOUNT (memtype=DATA).
+NOTE: 2 dataset(s) deleted.
+NOTE: DATA validate
+
+
+NOTE: Read 8 rows from weights.
+NOTE: Wrote validate (8 rows, 22 columns).
+NOTE: DATA elapsed:
+  wall  0.02 seconds
+  cpu   0.02 seconds
+NOTE: DATA RESULT
+
+
+NOTE: Read 8 rows from validate.
+NOTE: Wrote RESULT (8 rows, 24 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC PRINT data=RESULT
+
+NOTE: PROC PRINT completed: 8 observations printed, 24 variables
+NOTE: PROC DATASETS library=WORK
+
+NOTE: Deleting WEIGHTS (memtype=DATA).
+NOTE: Deleting VALIDATE (memtype=DATA).
+NOTE: 2 dataset(s) deleted.
+NOTE: Option TITLE changed to Unstratified SCAS intervals.
+NOTE: DATA dscheck
+
+
+NOTE: Read 8 rows from DS4.
+NOTE: Wrote dscheck (8 rows, 6 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: DATA dscount
+
+
+NOTE: Read 8 rows from dscheck.
+NOTE: Wrote dscount (8 rows, 7 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: DATA weights
+
+
+NOTE: Read 8 rows from dscount.
+NOTE: Wrote weights (8 rows, 11 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC DATASETS library=WORK
+
+NOTE: Deleting DSCHECK (memtype=DATA).
+NOTE: Deleting DSCOUNT (memtype=DATA).
+NOTE: 2 dataset(s) deleted.
+NOTE: DATA validate
+
+
+NOTE: Read 8 rows from weights.
+NOTE: Wrote validate (8 rows, 22 columns).
+NOTE: DATA elapsed:
+  wall  0.02 seconds
+  cpu   0.02 seconds
+NOTE: DATA RESULT
+
+
+NOTE: Read 8 rows from validate.
+NOTE: Wrote RESULT (8 rows, 24 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC PRINT data=RESULT
+
+NOTE: PROC PRINT completed: 8 observations printed, 24 variables
+NOTE: PROC DATASETS library=WORK
+
+NOTE: Deleting WEIGHTS (memtype=DATA).
+NOTE: Deleting VALIDATE (memtype=DATA).
+NOTE: 2 dataset(s) deleted.

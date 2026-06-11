@@ -1,0 +1,60 @@
+Jenner 0.1.0 (Unlicensed - limited to 100 observations)
+Get a license at https://jenneranalytics.com/license
+
+NOTE: Option OBS changed to 100.
+NOTE: Option TITLE changed to Tango RD expect (-0.517, -0.026).
+NOTE: DATA tangodata
+
+
+NOTE: Wrote tangodata (1 rows, 16 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC PRINT data=
+
+NOTE: PROC PRINT completed: 1 observations printed, 16 variables
+NOTE: Option TITLE changed to Tang RR expect (0.065, 0.907).
+NOTE: DATA tangodata
+
+
+NOTE: Wrote tangodata (1 rows, 16 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC PRINT data=
+
+NOTE: PROC PRINT completed: 1 observations printed, 16 variables
+NOTE: Option TITLE changed to SCAS RD expect (-0.528, -0.018).
+NOTE: DATA tangodata
+
+
+NOTE: Wrote tangodata (1 rows, 16 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC PRINT data=
+
+NOTE: PROC PRINT completed: 1 observations printed, 16 variables
+NOTE: Option TITLE changed to SCAS RR expect (0.043, 0.928).
+NOTE: DATA tangodata
+
+
+NOTE: Wrote tangodata (1 rows, 16 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC PRINT data=
+
+NOTE: PROC PRINT completed: 1 observations printed, 16 variables
+NOTE: DATA Students
+
+NOTE: Processing inline DATALINES (4 lines)
+
+NOTE: Read 4 rows from DATALINES.
+NOTE: Wrote Students (4 rows, 3 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC FREQ
+NOTE: ODS plot written: freq_mosaic_passpre_passpost.spec.json
+NOTE: PROC FREQ statement used.

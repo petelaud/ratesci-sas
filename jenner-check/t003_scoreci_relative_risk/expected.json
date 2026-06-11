@@ -1,0 +1,18 @@
+{
+  "_captured_at": "2026-06-11T19:29:30.163454+00:00",
+  "_captured_run_id": "r_019eb82850057db184b59bcbb0cd861e",
+  "status": "ok",
+  "exit_code": 0,
+  "log_contains": [
+    "NOTE: Read 1 rows from DATALINES.",
+    "NOTE: Wrote RESULT (1 rows, 17 columns)."
+  ],
+  "log_does_not_contain": [
+    "ERROR:",
+    "[JENNER-ERROR"
+  ],
+  "diagnostics": {
+    "parse_warnings": [],
+    "runtime_warnings": []
+  }
+}
