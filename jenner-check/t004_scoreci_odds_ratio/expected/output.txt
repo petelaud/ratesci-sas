@@ -1,0 +1,63 @@
+                                         Stratified OR, expect (1.4156, 6.7747)                                         
+
+
+DISTRIB  CONTRAST  SKEWCORR    BCF  CONFLEV        P1_AVG        P0_AVG           EST       L_BOUND       U_BOUND          CHI2   PVAL_2SIDED
+-------  --------  --------  -----  -------  ------------  ------------  ------------  ------------  ------------  ------------  ------------
+bin      OR        FALSE     FALSE     0.95  0.1919619821  0.0740498042  3.0933753598  1.4155511501  6.7747181422  8.3675406043  0.0038198222
+
+                                         Stratified OR, expect (1.4156, 6.7747)                                         
+
+
+         W_1          W_2           W_3           W_4  N_STRATA  WEIGHT
+------------  -----------  ------------  ------------  --------  ------
+1.7275163936  1.034421359  2.4553575406  0.8403700584         4  INV
+
+                                         Stratified OR, expect (1.4156, 6.7747)                                         
+
+
+      Q_STAT  DF    PVAL_HOMOG
+------------  --  ------------
+0.8649037992   3  0.8338879867
+
+                       Stratified OR with bias and skewness corrections, expect (1.3584, 6.5985)                        
+
+
+DISTRIB  CONTRAST  SKEWCORR    BCF  CONFLEV        P1_AVG       P0_AVG           EST       L_BOUND       U_BOUND         CHI2   PVAL_2SIDED
+-------  --------  --------  -----  -------  ------------  -----------  ------------  ------------  ------------  -----------  ------------
+bin      OR        TRUE      FALSE     0.95  0.1919815742  0.074060075  3.0659871016  1.3584013345  6.5984969546  6.886596171  0.0086844482
+
+                       Stratified OR with bias and skewness corrections, expect (1.3584, 6.5985)                        
+
+
+         W_1           W_2          W_3           W_4  N_STRATA  WEIGHT
+------------  ------------  -----------  ------------  --------  ------
+1.7245399118  1.0320717241  2.451683625  0.8384142481         4  INV
+
+                       Stratified OR with bias and skewness corrections, expect (1.3584, 6.5985)                        
+
+
+     Q_STAT  DF    PVAL_HOMOG
+-----------  --  ------------
+0.864284254   3  0.8340371442
+
+                                 Stratified RR, skewness-corrected, expect (1.31, 5.08)                                 
+
+
+DISTRIB  CONTRAST  SKEWCORR    BCF  CONFLEV        P1_AVG        P0_AVG           EST       L_BOUND       U_BOUND          CHI2   PVAL_2SIDED
+-------  --------  --------  -----  -------  ------------  ------------  ------------  ------------  ------------  ------------  ------------
+bin      RR        TRUE      FALSE     0.95  0.1993984206  0.0783904564  2.6600062904  1.3107358459  5.0772163821  6.8292681066  0.0089676004
+
+                                 Stratified RR, skewness-corrected, expect (1.31, 5.08)                                 
+
+
+        W_1           W_2           W_3           W_4  N_STRATA  WEIGHT
+-----------  ------------  ------------  ------------  --------  ------
+0.347710026  0.1706567083  0.5595321819  0.1331161375         4  INV
+
+                                 Stratified RR, skewness-corrected, expect (1.31, 5.08)                                 
+
+
+      Q_STAT  DF    PVAL_HOMOG
+------------  --  ------------
+0.9536820958   3  0.8124574827
+

@@ -1,0 +1,42 @@
+                                    Stratified Miettinen-Nurminen confidence limits                                     
+
+
+       ZSTAT         PVALL         PVALR  DISTRIB  CONTRAST  SKEWCORR   BCF  CONFLEV        P1_AVG        P0_AVG           EST       L_BOUND       U_BOUND          CHI2   PVAL_2SIDED  TEST_DELTA        Z_DIFF        PVAL_L        PVAL_R
+------------  ------------  ------------  -------  --------  --------  ----  -------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ----------  ------------  ------------  ------------
+1.9727559446  0.9757383819  0.0242616181  bin      RD        FALSE     TRUE     0.95  0.6949347467  0.5807290365  0.1142057102  0.0007231903  0.2297652849  3.8917660169  0.0485233747           0  1.9727559446  0.9757383819  0.0242616181
+
+                                    Stratified Miettinen-Nurminen confidence limits                                     
+
+
+  W_1            W_2            W_3    W_4  N_STRATA  WEIGHT
+-----  -------------  -------------  -----  --------  ------
+11.22  16.6666666667  16.6666666667  22.11         4  MH
+
+                                    Stratified Miettinen-Nurminen confidence limits                                     
+
+
+       Q_STAT  DF    PVAL_HOMOG
+-------------  --  ------------
+10.0169441964   3  0.0184226513
+
+                                 Stratified skewness-corrected score confidence limits                                  
+
+
+       ZSTAT         PVALL         PVALR  DISTRIB  CONTRAST  SKEWCORR   BCF  CONFLEV        P1_AVG        P0_AVG           EST       L_BOUND       U_BOUND          CHI2   PVAL_2SIDED  TEST_DELTA        Z_DIFF        PVAL_L        PVAL_R
+------------  ------------  ------------  -------  --------  --------  ----  -------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ----------  ------------  ------------  ------------
+1.9606435996  0.9750397628  0.0249602372  bin      RD        TRUE      TRUE     0.95  0.6949347467  0.5807290365  0.1142901974  0.0000392004  0.2300689318  3.8441233248  0.0499206126           0  1.9606435996  0.9750397628  0.0249602372
+
+                                 Stratified skewness-corrected score confidence limits                                  
+
+
+  W_1            W_2            W_3    W_4  N_STRATA  WEIGHT
+-----  -------------  -------------  -----  --------  ------
+11.22  16.6666666667  16.6666666667  22.11         4  MH
+
+                                 Stratified skewness-corrected score confidence limits                                  
+
+
+       Q_STAT  DF    PVAL_HOMOG
+-------------  --  ------------
+10.0171174271   3  0.0184211901
+

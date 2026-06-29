@@ -1,0 +1,8 @@
+{
+  "bundle": "t002_scoreci_unstratified_rd",
+  "source_file": "scoreci.sas",
+  "source_blob_sha": "83fcf00f27e66e0a7a37d66cf92beb1ed49939c0",
+  "source_commit": "5426edea41800c563999aaaaac4b16b71e844952",
+  "tier": "real_data",
+  "notes": "script.sas embeds scoreci.sas (v0.2.0) with mechanical, semantics-preserving adaptations for the Jenner engine: (1) infty PROC FORMAT + format statements removed; (2) %sysevalf(&delta. ne .) -> string comparison; (3) ' & ' AND operator -> 'and'; (4) 'GO TO' -> 'GOTO'; (5) ARRAY colon-lists -> explicit %do-generated name lists (with indexed names in the unstratified rename); (6) comments wedged between IF and ELSE removed; (7) KEEP=/DROP= colon prefix lists -> explicit lists; (8) multi-output 'data main validate' -> single-output 'data validate' (the 'main' iteration trail is never read by the macro); (9) macro %ELSE %IF chains -> independent %IF with mutually exclusive/negated conditions; (10) outer parentheses stripped from %IF conditions; (11) one-stratum check flattened to one %IF + %put; (12) homogeneity guard hoisted to a macro %IF; (13) DS declared as keyword parameter. Example data and calls are the published examples from tests/v_scoreci.sas (explicit run; added after CARDS). Confidence limits match the values documented in the author's validation script. This bundle: Newcombe 1998 single-stratum examples incl. 0%/100% boundary cases, MN and SCAS."
+}

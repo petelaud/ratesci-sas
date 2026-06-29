@@ -1,0 +1,7 @@
+                                  Unstratified RR, MN method, expect (0.8310, 4.6580)                                   
+
+
+ROW  DISTRIB  CONTRAST  SKEWCORR   BCF  CONFLEV  E1  N1  E0  N0   P1   P0           EST       L_BOUND       U_BOUND          CHI2   PVAL_2SIDED
+---  -------  --------  --------  ----  -------  --  --  --  --  ---  ---  ------------  ------------  ------------  ------------  ------------
+  1  bin      RR        FALSE     TRUE     0.95   6  10   6  20  0.6  0.3  1.9999999999  0.8309741982  4.6579915677  2.4166666667  0.1200501397
+
